@@ -16,8 +16,8 @@ namespace Ui
         {
             _profilePlayer = profilePlayer;
             _view = LoadView(placeForUi);
-            _view.Init(StartGame);
-            _view.InitSettings(Settings);
+            _view.Init(StartGame, ShowSettings);
+            
         }
 
         private MainMenuView LoadView(Transform placeForUi)
@@ -33,7 +33,7 @@ namespace Ui
             _profilePlayer.CurrentState.Value = GameState.Game;
 
 
-        private void Settings() =>
+        private void ShowSettings() =>
             _profilePlayer.CurrentState.Value = GameState.Settings;
     }
 }
