@@ -50,7 +50,7 @@ internal class MainController : BaseController
             case GameState.Game:
                 _gameController = new GameController(_profilePlayer);
                 _mainMenuController?.Dispose();
-                _settingsMenuController.Dispose();
+                _settingsMenuController?.Dispose();
                 break;
             default:
                 _mainMenuController?.Dispose();
