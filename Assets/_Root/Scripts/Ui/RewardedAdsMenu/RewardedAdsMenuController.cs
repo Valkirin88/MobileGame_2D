@@ -5,33 +5,30 @@ using Object = UnityEngine.Object;
 
 namespace Ui
 {
-    internal class SettingsMenuController : BaseController
+    internal class RewardedAdsMenuController : BaseController
     {
-        private readonly ResourcePath _resourcePath = new ResourcePath("Prefabs/SettingsMenu");
+        private readonly ResourcePath _resourcePath = new ResourcePath("Prefabs/RewardedAdsMenu");
         private readonly ProfilePlayer _profilePlayer;
-        private readonly SettingsMenuView _view;
+        private readonly RewardedAdsMenuView _view;
 
 
-        public SettingsMenuController(Transform placeForUi, ProfilePlayer profilePlayer)
+        public RewardedAdsMenuController(Transform placeForUi, ProfilePlayer profilePlayer)
         {
             _profilePlayer = profilePlayer;
             _view = LoadView(placeForUi);
             _view.Init(ShowMainMenu);
-           
         }
 
-        private SettingsMenuView LoadView(Transform placeForUi)
+        private RewardedAdsMenuView LoadView(Transform placeForUi)
         {
             GameObject prefab = ResourcesLoader.LoadPrefab(_resourcePath);
             GameObject objectView = Object.Instantiate(prefab, placeForUi, false);
             AddGameObject(objectView);
-            return objectView.GetComponent<SettingsMenuView>();
+            return objectView.GetComponent<RewardedAdsMenuView>();
         }
 
         private void ShowMainMenu() =>
             _profilePlayer.CurrentState.Value = GameState.Start;
-
-
-        
     }
 }
+
