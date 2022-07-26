@@ -1,6 +1,7 @@
 using Profile;
 using Tool;
 using UnityEngine;
+using UnityEngine.Analytics;
 using Object = UnityEngine.Object;
 
 namespace Ui
@@ -17,6 +18,7 @@ namespace Ui
             _profilePlayer = profilePlayer;
             _view = LoadView(placeForUi);
             _view.Init(StartGame, ShowSettings, ShowAds, BuyProductMenu);
+            
         }
 
         private MainMenuView LoadView(Transform placeForUi)
@@ -28,10 +30,12 @@ namespace Ui
             return objectView.GetComponent<MainMenuView>();
         }
 
-        private void StartGame() =>
+        private void StartGame()
+        {
             _profilePlayer.CurrentState.Value = GameState.Game;
-
-
+            _view.AnalyticsManager.SendGameStartedEvent();
+        }
+        
         private void ShowSettings() =>
             _profilePlayer.CurrentState.Value = GameState.Settings;
 

@@ -1,3 +1,4 @@
+using Tool.Analytics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -7,12 +8,16 @@ namespace Ui
     internal class MainMenuView : MonoBehaviour
     {
         [SerializeField] private Button _buttonStart;
-        
+
         [SerializeField] private Button _buttonSettings;
 
         [SerializeField] private Button _buttonRewardedAds;
 
         [SerializeField] private Button _buttonBuyProduct;
+
+        [SerializeField] private AnalyticsManager _analyticsManager;
+
+        public AnalyticsManager AnalyticsManager => _analyticsManager; 
 
         public void Init(UnityAction startGame, UnityAction showSettings, UnityAction showAds, UnityAction buyProductMenu)
         {

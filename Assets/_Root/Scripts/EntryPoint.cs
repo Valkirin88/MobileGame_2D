@@ -9,12 +9,12 @@ internal class EntryPoint : MonoBehaviour
     [SerializeField] private Transform _placeForUi;
 
     private MainController _mainController;
-
-
+ 
     private void Start()
     {
         var profilePlayer = new ProfilePlayer(SpeedCar, InitialState);
         _mainController = new MainController(_placeForUi, profilePlayer);
+       
     }
 
     private void OnDestroy()

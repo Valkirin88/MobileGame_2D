@@ -539,6 +539,7 @@ MonoBehaviour:
   _buttonSettings: {fileID: 2096870156749891688}
   _buttonRewardedAds: {fileID: 4358957713599625640}
   _buttonBuyProduct: {fileID: 377969457371800771}
+  _analyticsManager: {fileID: 4625272064434407714, guid: 04669ee6f38a4784f87cd2e37533230e, type: 3}
 --- !u!1 &6888920513732523659
 GameObject:
   m_ObjectHideFlags: 0
