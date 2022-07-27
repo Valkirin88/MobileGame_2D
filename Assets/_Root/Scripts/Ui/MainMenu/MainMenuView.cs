@@ -15,10 +15,7 @@ namespace Ui
 
         [SerializeField] private Button _buttonBuyProduct;
 
-        [SerializeField] private AnalyticsManager _analyticsManager;
-
-        public AnalyticsManager AnalyticsManager => _analyticsManager; 
-
+       
         public void Init(UnityAction startGame, UnityAction showSettings, UnityAction showAds, UnityAction buyProductMenu)
         {
             _buttonStart.onClick.AddListener(startGame);

@@ -26,7 +26,6 @@ namespace Tool.Analytics
         {
             foreach (IAnalyticsService service in _services)
             {
-                Debug.Log(eventName);
                 service.SendEvent(eventName);
             }
         }

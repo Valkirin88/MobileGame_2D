@@ -2,6 +2,7 @@ using Ui;
 using Game;
 using Profile;
 using UnityEngine;
+using Tool.Analytics;
 
 internal class MainController : BaseController
 {
@@ -13,12 +14,13 @@ internal class MainController : BaseController
     private SettingsMenuController _settingsMenuController;
     private RewardedAdsMenuController _rewardedAdsMenuController;
     private BuyProductMenuController _buyProductMenuController;
+    private AnalyticsManager _analyticsManager;
 
-
-    public MainController(Transform placeForUi, ProfilePlayer profilePlayer)
+    public MainController(Transform placeForUi, ProfilePlayer profilePlayer, AnalyticsManager analyticsManager)
     {
         _placeForUi = placeForUi;
         _profilePlayer = profilePlayer;
+        _analyticsManager = analyticsManager;
 
         profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
         OnChangeGameState(_profilePlayer.CurrentState.Value);
@@ -77,6 +79,7 @@ internal class MainController : BaseController
                 _settingsMenuController?.Dispose();
                 _buyProductMenuController?.Dispose();
                 _rewardedAdsMenuController?.Dispose();
+                _analyticsManager.SendGameStartedEvent();
                 break;
             default:
                 _mainMenuController?.Dispose();

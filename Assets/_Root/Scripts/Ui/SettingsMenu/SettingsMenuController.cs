@@ -30,8 +30,5 @@ namespace Ui
 
         private void ShowMainMenu() =>
             _profilePlayer.CurrentState.Value = GameState.Start;
-
-
-        
     }
 }
