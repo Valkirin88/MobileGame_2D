@@ -6,7 +6,6 @@ namespace Profile
         Start,
         Settings,
         Game, 
-        Ads,
-        Buy
+        Ads
     }
 }

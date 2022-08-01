@@ -1,4 +1,5 @@
 using Profile;
+using Services.Ads.UnityAds;
 using Tool;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -15,8 +16,8 @@ namespace Ui
         public RewardedAdsMenuController(Transform placeForUi, ProfilePlayer profilePlayer)
         {
             _profilePlayer = profilePlayer;
-            _view = LoadView(placeForUi);
-            _view.Init(ShowMainMenu);
+          //  _view = LoadView(placeForUi);
+            _view.Init(ShowRewardedAds);
         }
 
         private RewardedAdsMenuView LoadView(Transform placeForUi)
@@ -27,8 +28,12 @@ namespace Ui
             return objectView.GetComponent<RewardedAdsMenuView>();
         }
 
-        private void ShowMainMenu() =>
-            _profilePlayer.CurrentState.Value = GameState.Start;
+        private void ShowRewardedAds()
+        {
+           // _profilePlayer.CurrentState.Value = GameState.Ads;
+        
+        }
+
     }
 }
 
