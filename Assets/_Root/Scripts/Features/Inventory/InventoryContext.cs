@@ -10,8 +10,8 @@ namespace Features.Inventory
 {
     internal class InventoryContext : BaseContext
     {
-        private static readonly ResourcePath _viewPath = new("Prefabs/Inventory/InventoryView");
-        private static readonly ResourcePath _dataSourcePath = new("Configs/Inventory/ItemConfigDataSource");
+        private static readonly ResourcePath _viewPath = new ResourcePath("Prefabs/Inventory/InventoryView");
+        private static readonly ResourcePath _dataSourcePath = new ResourcePath("Configs/Inventory/ItemConfigDataSource");
 
 
         public InventoryContext([NotNull] Transform placeForUi, [NotNull] IInventoryModel model)

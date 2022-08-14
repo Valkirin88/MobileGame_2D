@@ -39,15 +39,21 @@ namespace Services.Ads.UnityAds
         }
 
 
-        private IAdsPlayer CreateInterstitial() =>
-            _settings.Interstitial.Enabled
-                ? new InterstitialPlayer(_settings.Interstitial.Id)
-                : new StubPlayer("");
+        private IAdsPlayer CreateInterstitial()
+        {
+            if  (_settings.Interstitial.Enabled)
+                return new InterstitialPlayer(_settings.Interstitial.Id);
+            else
+                return new StubPlayer("");
+        }
 
-        private IAdsPlayer CreateRewarded() =>
-            _settings.Rewarded.Enabled
-                ? new RewardedAdsPlayer(_settings.Rewarded.Id)
-                : new StubPlayer("");
+        private IAdsPlayer CreateRewarded()
+        {
+            if (_settings.Rewarded.Enabled)
+                return new RewardedAdsPlayer(_settings.Rewarded.Id);
+            else
+                return new StubPlayer("");
+        }
 
         private IAdsPlayer CreateBanner() =>
             new StubPlayer("");
