@@ -14,26 +14,46 @@ namespace Services.Ads.UnityAds
 
         protected readonly string Id;
 
+
         protected UnityAdsPlayer(string id)
         {
             Id = id;
             Advertisement.AddListener(this);
         }
 
+
         public void Play()
         {
             Load();
             OnPlaying();
             Load();
+
+            Log("Play");
         }
 
         protected abstract void OnPlaying();
-
         protected abstract void Load();
 
-        void IUnityAdsListener.OnUnityAdsDidError(string message)
+
+        void IUnityAdsListener.OnUnityAdsReady(string placementId)
         {
+            if (IsIdMy(placementId) == false)
+                return;
+
+            Log("Ready");
+            BecomeReady?.Invoke();
+        }
+
+        void IUnityAdsListener.OnUnityAdsDidError(string message) =>
             Error($"Error: {message}");
+
+        void IUnityAdsListener.OnUnityAdsDidStart(string placementId)
+        {
+            if (IsIdMy(placementId) == false)
+                return;
+
+            Log("Started");
+            Started?.Invoke();
         }
 
         void IUnityAdsListener.OnUnityAdsDidFinish(string placementId, ShowResult showResult)
@@ -60,27 +80,11 @@ namespace Services.Ads.UnityAds
             }
         }
 
-        void IUnityAdsListener.OnUnityAdsDidStart(string placementId)
-        {
-            if (IsIdMy(placementId) == false)
-                return;
-        }
-
-        void IUnityAdsListener.OnUnityAdsReady(string placementId)
-        {
-            if (IsIdMy(placementId) == false)
-                return;
-
-            Log($"Ready {Id}");
-            BecomeReady?.Invoke();
-        }
 
         private bool IsIdMy(string id) => Id == id;
 
         private void Log(string message) => Debug.Log(WrapMessage(message));
-
         private void Error(string message) => Debug.LogError(WrapMessage(message));
-
-        private string WrapMessage(string message) => $"[{GetType().Name}]{message}";
+        private string WrapMessage(string message) => $"[{GetType().Name}] {message}";
     }
 }

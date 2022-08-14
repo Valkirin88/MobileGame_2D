@@ -7,7 +7,7 @@ namespace Ui
 {
     internal class SettingsMenuController : BaseController
     {
-        private readonly ResourcePath _resourcePath = new ResourcePath("Prefabs/SettingsMenu");
+        private readonly ResourcePath _resourcePath = new ResourcePath("Prefabs/Ui/SettingsMenu");
         private readonly ProfilePlayer _profilePlayer;
         private readonly SettingsMenuView _view;
 
@@ -16,19 +16,20 @@ namespace Ui
         {
             _profilePlayer = profilePlayer;
             _view = LoadView(placeForUi);
-            _view.Init(ShowMainMenu);
-           
+            _view.Init(BackToMenu);
         }
+
 
         private SettingsMenuView LoadView(Transform placeForUi)
         {
             GameObject prefab = ResourcesLoader.LoadPrefab(_resourcePath);
             GameObject objectView = Object.Instantiate(prefab, placeForUi, false);
             AddGameObject(objectView);
+
             return objectView.GetComponent<SettingsMenuView>();
         }
 
-        private void ShowMainMenu() =>
+        private void BackToMenu() =>
             _profilePlayer.CurrentState.Value = GameState.Start;
     }
 }

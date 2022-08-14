@@ -1,19 +1,22 @@
 using Tool;
 using UnityEngine;
+using Features.AbilitySystem;
 
 namespace Game.Car
 {
-    internal class CarController : BaseController
+    internal class CarController : BaseController, IAbilityActivator
     {
         private readonly ResourcePath _viewPath = new ResourcePath("Prefabs/Car");
         private readonly CarView _view;
 
         public GameObject ViewGameObject => _view.gameObject;
 
+
         public CarController()
         {
             _view = LoadView();
         }
+
 
         private CarView LoadView()
         {

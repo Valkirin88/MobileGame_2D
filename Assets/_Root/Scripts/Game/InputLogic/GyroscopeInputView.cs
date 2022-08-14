@@ -1,4 +1,3 @@
-using JoostenProductions;
 using Tool;
 using UnityEngine;
 
@@ -18,14 +17,7 @@ namespace Game.InputLogic
         }
 
 
-        private void Start() =>
-            UpdateManager.SubscribeToUpdate(Move);
-
-        private void OnDestroy() =>
-            UpdateManager.UnsubscribeFromUpdate(Move);
-
-
-        private void Move()
+        protected override void Move()
         {
             if (!SystemInfo.supportsGyroscope)
                 return;
@@ -34,7 +26,7 @@ namespace Game.InputLogic
             quaternion.Normalize();
 
             float offset = quaternion.x + quaternion.y;
-            float moveValue = _speed * _inputMultiplier * Time.deltaTime * offset;
+            float moveValue = Speed * _inputMultiplier * Time.deltaTime * offset;
 
             float abs = Mathf.Abs(moveValue);
             float sign = Mathf.Sign(moveValue);

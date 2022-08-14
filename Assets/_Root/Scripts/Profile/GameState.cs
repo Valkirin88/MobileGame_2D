@@ -5,7 +5,7 @@ namespace Profile
         None,
         Start,
         Settings,
-        Game, 
-        Ads
+        Shed,
+        Game
     }
 }

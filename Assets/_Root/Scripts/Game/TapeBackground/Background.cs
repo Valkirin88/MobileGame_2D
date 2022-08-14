@@ -14,6 +14,7 @@ namespace Game.TapeBackground
         private float LeftBorder => _cachedPosition.x - _size.x / 2;
         private float RightBorder => _cachedPosition.x + _size.x / 2;
 
+
         private void Awake()
         {
             _cachedPosition = transform.position;
@@ -22,6 +23,7 @@ namespace Game.TapeBackground
 
         private void OnValidate() =>
             _spriteRenderer ??= GetComponent<SpriteRenderer>();
+
 
         public void Move(float value)
         {
